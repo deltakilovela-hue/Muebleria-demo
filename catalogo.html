@@ -367,65 +367,145 @@ nav {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0,0,0,.92);
-  backdrop-filter: blur(12px) saturate(120%);
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  background: rgba(0,0,0,.93);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  cursor: zoom-out;
-  animation: lb-in .22s var(--ease);
+  overflow: hidden;
+  touch-action: none;
 }
 #lb.open { display: flex; }
+#lb.fade-in { animation: lb-in .22s var(--ease); }
 @keyframes lb-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+/* contenedor de imagen — se mueve con pan/drag */
 #lb-img-wrap {
-  position: relative;
-  max-width: min(90vw, 560px);
-  max-height: 90vh;
-  cursor: default;
-  animation: lb-scale .25s var(--ease);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  cursor: grab;
 }
-@keyframes lb-scale {
-  from { transform: scale(.93); opacity: 0; }
-  to   { transform: scale(1);   opacity: 1; }
-}
+#lb-img-wrap.grabbing { cursor: grabbing; }
+
 #lb-img {
   display: block;
-  width: 100%;
+  max-width: 92vw;
   max-height: 88vh;
   object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 32px 80px rgba(0,0,0,.6);
+  border-radius: 14px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.7);
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
+  will-change: transform;
+  transform-origin: center center;
+  transition: border-radius .2s;
 }
-#lb-close {
-  position: absolute;
-  top: -14px;
-  right: -14px;
-  width: 36px; height: 36px;
-  background: var(--blanco);
+#lb-img.zoomed { border-radius: 6px; }
+
+/* barra de controles inferior */
+#lb-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 1001;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s;
+}
+#lb.open #lb-bar { pointer-events: all; opacity: 1; }
+
+.lb-action {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(8px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0,0,0,.35);
-  transition: transform .15s;
+  transition: background .15s, transform .15s;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
 }
-#lb-close:hover { transform: scale(1.12) rotate(90deg); }
-#lb-close svg { width: 14px; height: 14px; }
-#lb-caption {
-  position: absolute;
-  bottom: -44px;
-  left: 0; right: 0;
-  text-align: center;
-  color: rgba(255,255,255,.55);
+.lb-action:hover { background: rgba(255,255,255,.22); transform: scale(1.08); }
+.lb-action:active { transform: scale(.95); }
+
+#lb-zoom-pct {
   font-size: 0.78rem;
+  color: rgba(255,255,255,.7);
+  min-width: 44px;
+  text-align: center;
+  letter-spacing: .5px;
+}
+
+/* botón cerrar */
+#lb-close {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 1002;
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .15s, transform .2s;
+  opacity: 0;
+  pointer-events: none;
+}
+#lb.open #lb-close { opacity: 1; pointer-events: all; }
+#lb-close:hover { background: rgba(255,255,255,.2); transform: rotate(90deg) scale(1.08); }
+#lb-close svg { width: 15px; height: 15px; }
+
+/* hint "pellizca para hacer zoom" — sólo móvil */
+#lb-hint {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  color: rgba(255,255,255,.85);
+  font-size: 0.75rem;
+  padding: 8px 16px;
+  border-radius: 50px;
+  letter-spacing: .4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 1003;
+  white-space: nowrap;
+}
+#lb-hint.show { opacity: 1; }
+
+#lb-caption {
+  position: fixed;
+  bottom: 64px; left: 0; right: 0;
+  text-align: center;
+  color: rgba(255,255,255,.35);
+  font-size: 0.72rem;
   letter-spacing: .3px;
+  pointer-events: none;
 }
 
 /* ═══════════════════════════════════════
@@ -870,52 +950,261 @@ footer {
 </a>
 
 <!-- LIGHTBOX -->
-<div id="lb" onclick="closeLb(event)">
+<div id="lb">
   <div id="lb-img-wrap">
     <img id="lb-img" src="" alt="">
-    <div id="lb-close" onclick="closeLb(null,true)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </div>
-    <div id="lb-caption"></div>
   </div>
+
+  <!-- Botón cerrar -->
+  <div id="lb-close" onclick="closeLb()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </div>
+
+  <!-- Controles zoom -->
+  <div id="lb-bar">
+    <div class="lb-action" id="lb-out"  title="Alejar">−</div>
+    <div id="lb-zoom-pct">100%</div>
+    <div class="lb-action" id="lb-in"   title="Acercar">+</div>
+    <div class="lb-action" id="lb-reset" title="Restablecer" style="font-size:.7rem;letter-spacing:-.5px">1:1</div>
+  </div>
+
+  <!-- Hint táctil -->
+  <div id="lb-hint">Pellizca o usa + / − para hacer zoom</div>
+
+  <div id="lb-caption"></div>
 </div>
 
 <script>
-/* ── FILTRO ── */
+/* ════════════════════════════════════════
+   FILTRO
+════════════════════════════════════════ */
 function filtrar(cat, btn) {
   document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   document.querySelectorAll('#grid .card').forEach(c => {
-    const show = cat === 'todos' || c.dataset.cat === cat;
-    c.style.display = show ? '' : 'none';
+    c.style.display = (cat === 'todos' || c.dataset.cat === cat) ? '' : 'none';
   });
 }
 
-/* ── LIGHTBOX ── */
-const lb      = document.getElementById('lb');
-const lbImg   = document.getElementById('lb-img');
-const lbCap   = document.getElementById('lb-caption');
-const lbWrap  = document.getElementById('lb-img-wrap');
+/* ════════════════════════════════════════
+   LIGHTBOX — ZOOM + PAN + PINCH
+════════════════════════════════════════ */
+const lb       = document.getElementById('lb');
+const lbImg    = document.getElementById('lb-img');
+const lbWrap   = document.getElementById('lb-img-wrap');
+const lbCap    = document.getElementById('lb-caption');
+const lbPct    = document.getElementById('lb-zoom-pct');
+const lbHint   = document.getElementById('lb-hint');
 
+const MIN_SCALE = 1;
+const MAX_SCALE = 5;
+const STEP      = 0.4;
+
+let scale   = 1;
+let tx = 0, ty = 0;          // translate acumulado
+let isDragging = false;
+let startX, startY, startTx, startTy;
+
+/* pinch */
+let pinchDist0 = 0, pinchScale0 = 1;
+let pinchMidX = 0, pinchMidY = 0;
+
+/* ── aplicar transform ── */
+function applyTransform(animate) {
+  if (animate) {
+    lbImg.style.transition = 'transform .25s cubic-bezier(.4,0,.2,1)';
+    setTimeout(() => lbImg.style.transition = '', 260);
+  } else {
+    lbImg.style.transition = '';
+  }
+  lbImg.style.transform = `scale(${scale}) translate(${tx/scale}px, ${ty/scale}px)`;
+  lbPct.textContent = Math.round(scale * 100) + '%';
+  lbImg.classList.toggle('zoomed', scale > 1);
+  lbWrap.style.cursor = scale > 1 ? 'grab' : 'default';
+}
+
+/* ── clamp pan dentro de límites lógicos ── */
+function clampPan() {
+  const maxX = (lbImg.naturalWidth  > 0 ? (lbImg.offsetWidth  * (scale - 1)) / 2 : 200);
+  const maxY = (lbImg.naturalHeight > 0 ? (lbImg.offsetHeight * (scale - 1)) / 2 : 300);
+  tx = Math.max(-maxX, Math.min(maxX, tx));
+  ty = Math.max(-maxY, Math.min(maxY, ty));
+}
+
+/* ── zoom ── */
+function zoomBy(delta, cx, cy) {
+  const prev = scale;
+  scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale + delta));
+  if (scale === prev) return;
+
+  /* ajustar tx/ty para que el punto bajo el cursor no se mueva */
+  if (cx !== undefined && cy !== undefined) {
+    const rect = lb.getBoundingClientRect();
+    const ox   = cx - rect.width  / 2;
+    const oy   = cy - rect.height / 2;
+    tx += ox * (1 - scale / prev);
+    ty += oy * (1 - scale / prev);
+  }
+  clampPan();
+  applyTransform(true);
+}
+
+function zoomTo(s, animate) {
+  scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, s));
+  clampPan();
+  applyTransform(animate);
+}
+
+/* ── reset ── */
+function resetZoom(animate) {
+  scale = 1; tx = 0; ty = 0;
+  applyTransform(animate !== false);
+}
+
+/* ── abrir ── */
 function openLb(wrap) {
   const img = wrap.querySelector('img');
   lbImg.src = img.src;
   lbImg.alt = img.alt;
   lbCap.textContent = img.alt;
-  lb.classList.add('open');
+  resetZoom(false);
+  lb.classList.add('open', 'fade-in');
   document.body.style.overflow = 'hidden';
-}
 
-function closeLb(e, force) {
-  if (force || (e && e.target === lb)) {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(() => { lbImg.src = ''; }, 250);
+  /* mostrar hint en táctil */
+  if ('ontouchstart' in window) {
+    lbHint.classList.add('show');
+    setTimeout(() => lbHint.classList.remove('show'), 2200);
   }
 }
 
+/* ── cerrar ── */
+function closeLb() {
+  lb.classList.remove('open', 'fade-in');
+  document.body.style.overflow = '';
+  setTimeout(() => { lbImg.src = ''; }, 260);
+}
+
+/* clic en fondo oscuro cierra */
+lb.addEventListener('click', e => {
+  if (e.target === lb) closeLb();
+});
+
+/* botones + − 1:1 */
+document.getElementById('lb-in').addEventListener('click',    () => zoomBy(+STEP));
+document.getElementById('lb-out').addEventListener('click',   () => zoomBy(-STEP));
+document.getElementById('lb-reset').addEventListener('click', () => resetZoom());
+
+/* ESC */
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLb(null, true);
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === '+' || e.key === '=') zoomBy(+STEP);
+  if (e.key === '-')                   zoomBy(-STEP);
+  if (e.key === '0')                   resetZoom();
+});
+
+/* ── RUEDA DEL MOUSE — scroll para zoom ── */
+lb.addEventListener('wheel', e => {
+  if (!lb.classList.contains('open')) return;
+  e.preventDefault();
+  const delta = e.deltaY < 0 ? +STEP : -STEP;
+  zoomBy(delta, e.clientX, e.clientY);
+}, { passive: false });
+
+/* ── DRAG (mouse) ── */
+lbWrap.addEventListener('mousedown', e => {
+  if (scale <= 1) return;
+  e.preventDefault();
+  isDragging = true;
+  startX = e.clientX; startY = e.clientY;
+  startTx = tx;       startTy = ty;
+  lbWrap.classList.add('grabbing');
+});
+window.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  tx = startTx + (e.clientX - startX);
+  ty = startTy + (e.clientY - startY);
+  clampPan();
+  applyTransform();
+});
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  lbWrap.classList.remove('grabbing');
+});
+
+/* ── TOUCH — pinch zoom + drag ── */
+lbWrap.addEventListener('touchstart', e => {
+  if (e.touches.length === 2) {
+    /* pinch start */
+    e.preventDefault();
+    const t = e.touches;
+    pinchDist0  = Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY);
+    pinchScale0 = scale;
+    pinchMidX   = (t[0].clientX + t[1].clientX) / 2;
+    pinchMidY   = (t[0].clientY + t[1].clientY) / 2;
+  } else if (e.touches.length === 1 && scale > 1) {
+    /* drag start */
+    e.preventDefault();
+    isDragging = true;
+    startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+    startTx = tx; startTy = ty;
+  }
+}, { passive: false });
+
+lbWrap.addEventListener('touchmove', e => {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    const t    = e.touches;
+    const dist = Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY);
+    const s    = Math.min(MAX_SCALE, Math.max(MIN_SCALE, pinchScale0 * (dist / pinchDist0)));
+    const rect = lb.getBoundingClientRect();
+    const ox   = pinchMidX - rect.width  / 2;
+    const oy   = pinchMidY - rect.height / 2;
+    tx += ox * (1 - s / scale);
+    ty += oy * (1 - s / scale);
+    scale = s;
+    clampPan();
+    applyTransform();
+  } else if (e.touches.length === 1 && isDragging) {
+    e.preventDefault();
+    tx = startTx + (e.touches[0].clientX - startX);
+    ty = startTy + (e.touches[0].clientY - startY);
+    clampPan();
+    applyTransform();
+  }
+}, { passive: false });
+
+lbWrap.addEventListener('touchend', e => {
+  if (e.touches.length < 2) {
+    /* si el pinch terminó y scale < 1.1, reset */
+    if (scale < 1.05) resetZoom();
+  }
+  if (e.touches.length === 0) isDragging = false;
+});
+
+/* ── DOBLE CLIC/TAP — toggle zoom 2.5× ── */
+lbWrap.addEventListener('dblclick', e => {
+  if (scale > 1) {
+    resetZoom();
+  } else {
+    zoomBy(1.5, e.clientX, e.clientY);
+  }
+});
+
+/* doble tap en móvil */
+let lastTap = 0;
+lbWrap.addEventListener('touchend', e => {
+  if (e.touches.length > 0) return;
+  const now = Date.now();
+  if (now - lastTap < 280) {
+    const t = e.changedTouches[0];
+    if (scale > 1) resetZoom();
+    else zoomBy(1.5, t.clientX, t.clientY);
+  }
+  lastTap = now;
 });
 </script>
 
