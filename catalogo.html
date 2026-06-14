@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muebles Ambriz Tepic — Catálogo 2026</title>
+<style>
+  :root {
+    --rosa: #C2185B;
+    --rosa-dark: #AD1457;
+    --rosa-claro: #FCE4EC;
+    --negro: #0D0D0D;
+    --crema: #FFF8F5;
+    --dorado: #B8860B;
+    --plata: #9E9E9E;
+    --texto: #2c2c2c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--negro);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 24px rgba(194,24,91,0.35);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .logo p {
+    font-size: 0.68rem;
+    color: var(--rosa);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .header-wa {
+    background: var(--rosa);
+    color: #fff;
+    padding: 9px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background .2s;
+    white-space: nowrap;
+  }
+  .header-wa:hover { background: var(--rosa-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(150deg, #0d0d0d 0%, #1f0814 55%, #0d0d0d 100%);
+    padding: 72px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(194,24,91,0.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+  .hero h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .hero h2 em { color: var(--rosa); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+  .hero-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .chip {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(194,24,91,0.4);
+    color: rgba(255,255,255,0.85);
+    padding: 7px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    letter-spacing: .3px;
+  }
+
+  /* ── FILTROS ── */
+  .filtros-wrap {
+    background: #fff;
+    border-bottom: 2px solid #f0e4e9;
+    position: sticky;
+    top: 58px;
+    z-index: 90;
+    padding: 12px 16px;
+  }
+  .filtros {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .f-btn {
+    padding: 7px 18px;
+    border-radius: 50px;
+    border: 2px solid #e0d0d8;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #555;
+    transition: all .18s;
+    font-family: inherit;
+  }
+  .f-btn:hover, .f-btn.on {
+    background: var(--rosa);
+    border-color: var(--rosa);
+    color: #fff;
+  }
+
+  /* ── GRID ── */
+  .grid-section { max-width: 1100px; margin: 0 auto; padding: 44px 20px 20px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 26px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 3px 18px rgba(0,0,0,0.07);
+    border: 2px solid transparent;
+    transition: transform .22s, box-shadow .22s, border-color .22s;
+  }
+  .card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 14px 44px rgba(194,24,91,0.17);
+    border-color: var(--rosa);
+  }
+
+  .card-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;          /* proporción vertical igual que las imágenes */
+    background: #f0ece8;
+  }
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform .4s ease;
+  }
+  .card:hover .card-img img { transform: scale(1.05); }
+
+  .cat-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(13,13,13,0.72);
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 50px;
+    backdrop-filter: blur(6px);
+  }
+
+  .card-body { padding: 20px 22px 22px; }
+  .card-nombre {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--negro);
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 0.8rem;
+    color: var(--plata);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  /* precio inline */
+  .precios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+  .precio-pill {
+    background: var(--rosa);
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .precio-pill.alt {
+    background: var(--negro);
+  }
+  .precio-pill.consulta {
+    background: transparent;
+    border: 2px solid var(--rosa);
+    color: var(--rosa);
+  }
+
+  .card-btn {
+    display: block;
+    width: 100%;
+    background: var(--negro);
+    color: #fff;
+    text-align: center;
+    padding: 11px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: .4px;
+    transition: background .18s;
+  }
+  .card-btn:hover { background: var(--rosa); }
+
+  /* ── BANNER FINANCIAMIENTO ── */
+  .banner-fin {
+    background: linear-gradient(135deg, var(--rosa), var(--rosa-dark) 100%);
+    padding: 56px 24px;
+    text-align: center;
+    margin: 40px 0 0;
+  }
+  .banner-fin h3 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .banner-fin p { color: rgba(255,255,255,0.82); font-size: 1rem; margin-bottom: 30px; }
+  .fin-cards {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 640px;
+    margin: 0 auto 28px;
+  }
+  .fin-card {
+    flex: 1;
+    min-width: 190px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 16px;
+    padding: 22px 28px;
+    color: #fff;
+    backdrop-filter: blur(8px);
+  }
+  .fin-card .num { font-size: 2rem; font-weight: 800; font-family: Georgia, serif; }
+  .fin-card .sub { font-size: 0.8rem; opacity: .8; margin-top: 4px; }
+  .banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--rosa);
+    padding: 13px 34px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.95rem;
+    transition: transform .18s;
+  }
+  .banner-cta:hover { transform: scale(1.04); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--negro);
+    color: rgba(255,255,255,0.55);
+    padding: 44px 24px 36px;
+    text-align: center;
+  }
+  footer h4 {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+  footer .datos { margin: 16px 0; line-height: 2.1; font-size: 0.9rem; }
+  footer .datos a { color: var(--rosa); text-decoration: none; font-weight: 600; }
+  footer .credit { font-size: 0.7rem; margin-top: 22px; opacity: .35; }
+
+  /* ── WHATSAPP FLOTANTE ── */
+  .wa-fab {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    z-index: 999;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 22px rgba(37,211,102,0.45);
+    animation: wa-pulse 2.2s infinite;
+    font-size: 26px;
+  }
+  .wa-fab:hover { transform: scale(1.1); }
+  @keyframes wa-pulse {
+    0%,100% { box-shadow: 0 4px 22px rgba(37,211,102,0.45); }
+    50%      { box-shadow: 0 4px 34px rgba(37,211,102,0.75); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 560px) {
+    .logo h1 { font-size: 1.15rem; }
+    .filtros-wrap { top: 52px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .card-body { padding: 14px 14px 16px; }
+    .card-nombre { font-size: 0.95rem; }
+  }
+  @media (max-width: 380px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <h1>Muebles Ambriz</h1>
+      <p>Tepic, Nayarit &nbsp;·&nbsp; Desde 2018</p>
+    </div>
+    <a class="header-wa" href="https://wa.me/523111576442" target="_blank">
+      💬 WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Tu hogar,<br><em>tu estilo.</em></h2>
+    <p>Catálogo 2026 — Recámaras, salas, comedores y más.<br>Con financiamiento propio, sin banco y sin trámites.</p>
+    <div class="hero-chips">
+      <span class="chip">✅ Sin banco</span>
+      <span class="chip">✅ Entrega inmediata</span>
+      <span class="chip">✅ 1 año de garantía</span>
+      <span class="chip">✅ Envío a domicilio</span>
+    </div>
+  </div>
+</section>
+
+<!-- FILTROS -->
+<div class="filtros-wrap">
+  <div class="filtros">
+    <button class="f-btn on"      onclick="filtrar('todos',this)">Todos</button>
+    <button class="f-btn"         onclick="filtrar('recamara',this)">🛏️ Recámaras</button>
+    <button class="f-btn"         onclick="filtrar('tocador',this)">💄 Tocadores & Espejos</button>
+    <button class="f-btn"         onclick="filtrar('sala',this)">🛋️ Salas & Comedores</button>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-section">
+  <div class="grid" id="grid">
+
+    <!-- 1 — Recámara Completa Chocolate -->
+    <div class="card" data-cat="recamara">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_01 (1).png" alt="Recámara Completa Chocolate" loading="lazy">
+        <span class="cat-tag">🛏️ Recámara</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Recámara Completa Chocolate</div>
+        <div class="card-desc">Cabecera tapizada · tocador · ropero con espejo iluminado · baúl</div>
+        <div class="precios">
+          <span class="precio-pill">20 semanas $1,100</span>
+          <span class="precio-pill alt">10 quincenas $2,200</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Vi%20la%20Recámara%20Completa%20Chocolate%20en%20su%20catálogo%20y%20me%20interesa%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 2 — Cabecera Tapizada LED Dorado -->
+    <div class="card" data-cat="recamara">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_01 (2).png" alt="Cabecera Tapizada LED Dorado" loading="lazy">
+        <span class="cat-tag">🛏️ Recámara</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Cabecera Tapizada LED Dorado</div>
+        <div class="card-desc">Cabecera king · listones dorados · LED perimetral</div>
+        <div class="precios">
+          <span class="precio-pill">20 semanas $800</span>
+          <span class="precio-pill alt">10 quincenas $1,600</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Cabecera%20Tapizada%20LED%20Dorado%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 3 — Recámara Confort Gris Plata -->
+    <div class="card" data-cat="recamara">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_01 (3).png" alt="Recámara Confort Gris Plata" loading="lazy">
+        <span class="cat-tag">🛏️ Recámara</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Recámara Confort Gris Plata</div>
+        <div class="card-desc">Cabecera · tocador grande · ropero torre · gris perla</div>
+        <div class="precios">
+          <span class="precio-pill">20 semanas $1,100</span>
+          <span class="precio-pill alt">10 quincenas $2,200</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Recámara%20Confort%20Gris%20Plata%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 4 — Recámara Black Edition -->
+    <div class="card" data-cat="recamara">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_02 (4).png" alt="Recámara Black Edition" loading="lazy">
+        <span class="cat-tag">🛏️ Recámara</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Recámara Black Edition</div>
+        <div class="card-desc">Cabecera · baúl · tocador · base · negro carbón. Disponible en tienda.</div>
+        <div class="precios">
+          <span class="precio-pill consulta">Consultar precio</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Recámara%20Black%20Edition%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 5 — Tocador Hollywood Blanco -->
+    <div class="card" data-cat="tocador">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_02 (5).png" alt="Tocador Hollywood Blanco" loading="lazy">
+        <span class="cat-tag">💄 Tocador</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Tocador Hollywood Blanco</div>
+        <div class="card-desc">Espejo iluminado · cajones · banqueta rosa incluida</div>
+        <div class="precios">
+          <span class="precio-pill">$5,800</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Tocador%20Hollywood%20Blanco%20en%20%245%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 6 — Espejo de Focos de Piso -->
+    <div class="card" data-cat="tocador">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_02 (6).png" alt="Espejo de Focos de Piso" loading="lazy">
+        <span class="cat-tag">💄 Espejo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Espejo de Focos de Piso</div>
+        <div class="card-desc">Cuerpo completo · LED integrado · disponible en rosa palo y gris</div>
+        <div class="precios">
+          <span class="precio-pill">$2,800</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Espejo%20de%20Focos%20de%20Piso%20en%20%242%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 7 — Base King Size + Baúl -->
+    <div class="card" data-cat="recamara">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_03 (7).png" alt="Base King Size + Baúl" loading="lazy">
+        <span class="cat-tag">🛏️ Recámara</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Base King Size + Baúl</div>
+        <div class="card-desc">Base tapizada beige · baúl capitoné gris. ¡Combínalos a tu estilo!</div>
+        <div class="precios">
+          <span class="precio-pill">Base king $6,500 🔥</span>
+          <span class="precio-pill alt">Baúl $3,000 🔥</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Base%20King%20Size%20y%20el%20Baúl%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 8 — Espejo de Niña con Torres -->
+    <div class="card" data-cat="tocador">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_03 (8).png" alt="Espejo de Niña con Torres" loading="lazy">
+        <span class="cat-tag">💄 Espejo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Espejo de Niña con Torres</div>
+        <div class="card-desc">Espejo iluminado · 2 torres de repisas · banqueta incluida</div>
+        <div class="precios">
+          <span class="precio-pill">$3,800</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Espejo%20de%20Niña%20con%20Torres%20en%20%243%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 9 — Colección Sala Capitonada -->
+    <div class="card" data-cat="sala">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_03 (9).png" alt="Colección Sala Capitonada" loading="lazy">
+        <span class="cat-tag">🛋️ Sala</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Colección Sala Capitonada</div>
+        <div class="card-desc">Sala 2-2 marfil · mesa dorada · mesas nogal</div>
+        <div class="precios">
+          <span class="precio-pill">Sala 2-2 $8,500</span>
+          <span class="precio-pill alt">Mesa dorada $3,600</span>
+          <span class="precio-pill">Mesas nogal $2,300 par</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Colección%20Sala%20Capitonada%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+    <!-- 10 — Comedor Brenda -->
+    <div class="card" data-cat="sala">
+      <div class="card-img">
+        <img src="ChatGPT Image 13 jun 2026, 19_35_04 (10).png" alt="Comedor Brenda" loading="lazy">
+        <span class="cat-tag">🍽️ Comedor</span>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Comedor Brenda</div>
+        <div class="card-desc">Mesa negra + 4 sillas capitonadas en tela crema. Ideal para elevar tu comedor.</div>
+        <div class="precios">
+          <span class="precio-pill">$10,800</span>
+        </div>
+        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Comedor%20Brenda%20en%20%2410%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+</div>
+
+<!-- BANNER FINANCIAMIENTO -->
+<section class="banner-fin">
+  <h3>Sin banco. Sin trámites. Sin estrés.</h3>
+  <p>Tu mueble nuevo hoy mismo, con nuestro propio financiamiento.</p>
+  <div class="fin-cards">
+    <div class="fin-card">
+      <div class="num">20 sem</div>
+      <div class="sub">Pagos semanales<br>Desde $800/sem</div>
+    </div>
+    <div class="fin-card">
+      <div class="num">10 qnas</div>
+      <div class="sub">Pago quincenal<br>Desde $1,600/qna</div>
+    </div>
+  </div>
+  <a class="banner-cta" href="https://wa.me/523111576442?text=Hola!%20Quiero%20conocer%20las%20opciones%20de%20financiamiento%20%F0%9F%98%8A" target="_blank">
+    💬 Pregunta por tu plan
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h4>MUEBLES AMBRIZ</h4>
+  <div class="datos">
+    📍 Iturbide 138, Col. Moctezuma, Tepic, Nayarit<br>
+    🕙 Lunes a Sábado &nbsp;·&nbsp; 10:00 am – 8:00 pm<br>
+    📲 <a href="https://wa.me/523111576442">311 157 6442</a>
+  </div>
+  <div class="credit">Catálogo digital desarrollado por Delta Kilo Soluciones · 2026</div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a class="wa-fab" href="https://wa.me/523111576442?text=Hola!%20Vi%20su%20catálogo%20en%20línea%20y%20me%20gustaría%20más%20información%20%F0%9F%98%8A" target="_blank" title="Escríbenos por WhatsApp">💬</a>
+
+<script>
+  function filtrar(cat, btn) {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    document.querySelectorAll('#grid .card').forEach(c => {
+      c.style.display = (cat === 'todos' || c.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
