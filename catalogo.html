@@ -3,617 +3,920 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muebles Ambriz Tepic — Catálogo 2026</title>
+<title>Muebles Ambriz — Catálogo 2026</title>
 <style>
-  :root {
-    --rosa: #C2185B;
-    --rosa-dark: #AD1457;
-    --rosa-claro: #FCE4EC;
-    --negro: #0D0D0D;
-    --crema: #FFF8F5;
-    --dorado: #B8860B;
-    --plata: #9E9E9E;
-    --texto: #2c2c2c;
-  }
+/* ═══════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════ */
+:root {
+  --rosa:      #C2185B;
+  --rosa-d:    #9C1148;
+  --negro:     #0A0A0A;
+  --gris-1:    #111111;
+  --gris-2:    #1C1C1C;
+  --gris-3:    #2E2E2E;
+  --gris-ui:   #F5F0F2;
+  --blanco:    #FFFFFF;
+  --texto:     #1A1A1A;
+  --muted:     #888888;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --ease:      cubic-bezier(.4,0,.2,1);
+  --shadow-card: 0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.07);
+  --shadow-hover: 0 4px 6px rgba(0,0,0,.04), 0 20px 48px rgba(194,24,91,.14);
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--crema);
-    color: var(--texto);
-  }
+html { scroll-behavior: smooth; }
 
-  /* ── HEADER ── */
-  header {
-    background: var(--negro);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 24px rgba(194,24,91,0.35);
-  }
-  .header-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo h1 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.5rem;
-    color: #fff;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-  .logo p {
-    font-size: 0.68rem;
-    color: var(--rosa);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-  .header-wa {
-    background: var(--rosa);
-    color: #fff;
-    padding: 9px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    transition: background .2s;
-    white-space: nowrap;
-  }
-  .header-wa:hover { background: var(--rosa-dark); }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--blanco);
+  color: var(--texto);
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(150deg, #0d0d0d 0%, #1f0814 55%, #0d0d0d 100%);
-    padding: 72px 24px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(194,24,91,0.13) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-content { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
-  .hero h2 {
-    font-family: Georgia, serif;
-    font-size: clamp(2.2rem, 6vw, 3.8rem);
-    color: #fff;
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  .hero h2 em { color: var(--rosa); font-style: normal; }
-  .hero p {
-    color: rgba(255,255,255,0.65);
-    font-size: 1.05rem;
-    line-height: 1.65;
-    margin-bottom: 28px;
-  }
-  .hero-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .chip {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(194,24,91,0.4);
-    color: rgba(255,255,255,0.85);
-    padding: 7px 16px;
-    border-radius: 50px;
-    font-size: 0.82rem;
-    letter-spacing: .3px;
-  }
+/* ═══════════════════════════════════════
+   TIPOGRAFÍA DISPLAY
+═══════════════════════════════════════ */
+.serif { font-family: Georgia, 'Times New Roman', serif; }
 
-  /* ── FILTROS ── */
-  .filtros-wrap {
-    background: #fff;
-    border-bottom: 2px solid #f0e4e9;
-    position: sticky;
-    top: 58px;
-    z-index: 90;
-    padding: 12px 16px;
-  }
-  .filtros {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .f-btn {
-    padding: 7px 18px;
-    border-radius: 50px;
-    border: 2px solid #e0d0d8;
-    background: #fff;
-    cursor: pointer;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #555;
-    transition: all .18s;
-    font-family: inherit;
-  }
-  .f-btn:hover, .f-btn.on {
-    background: var(--rosa);
-    border-color: var(--rosa);
-    color: #fff;
-  }
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.nav-logo span:first-child {
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  color: var(--blanco);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.nav-logo span:last-child {
+  font-size: 0.6rem;
+  color: var(--rosa);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+.nav-wa {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--rosa);
+  color: var(--blanco);
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: .3px;
+  transition: background .2s var(--ease), transform .15s var(--ease);
+}
+.nav-wa:hover { background: var(--rosa-d); transform: scale(1.03); }
+.nav-wa svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
 
-  /* ── GRID ── */
-  .grid-section { max-width: 1100px; margin: 0 auto; padding: 44px 20px 20px; }
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  background: var(--negro);
+  padding: 96px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(194,24,91,.18) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 20px;
+  position: relative;
+}
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: var(--blanco);
+  line-height: 1.1;
+  margin-bottom: 18px;
+  position: relative;
+}
+.hero h1 em {
+  color: var(--rosa);
+  font-style: normal;
+}
+.hero-sub {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: rgba(255,255,255,.5);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto 36px;
+  position: relative;
+}
+.hero-chips {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.chip {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.7);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  letter-spacing: .2px;
+  transition: border-color .2s;
+}
+.chip:hover { border-color: var(--rosa); }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 26px;
-  }
+/* ═══════════════════════════════════════
+   FILTROS
+═══════════════════════════════════════ */
+.filtros-bar {
+  position: sticky;
+  top: 60px;
+  z-index: 100;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.filtros-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.f-btn {
+  padding: 6px 16px;
+  border-radius: 50px;
+  border: 1.5px solid #E0E0E0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #666;
+  letter-spacing: .2px;
+  transition: all .18s var(--ease);
+  font-family: inherit;
+  white-space: nowrap;
+}
+.f-btn:hover { border-color: var(--rosa); color: var(--rosa); }
+.f-btn.on {
+  background: var(--negro);
+  border-color: var(--negro);
+  color: var(--blanco);
+}
 
-  /* ── CARD ── */
-  .card {
-    background: #fff;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 3px 18px rgba(0,0,0,0.07);
-    border: 2px solid transparent;
-    transition: transform .22s, box-shadow .22s, border-color .22s;
-  }
-  .card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 14px 44px rgba(194,24,91,0.17);
-    border-color: var(--rosa);
-  }
+/* ═══════════════════════════════════════
+   GRID SECTION
+═══════════════════════════════════════ */
+.grid-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 52px 20px 60px;
+}
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
 
-  .card-img {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 3/4;          /* proporción vertical igual que las imágenes */
-    background: #f0ece8;
-  }
-  .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    transition: transform .4s ease;
-  }
-  .card:hover .card-img img { transform: scale(1.05); }
+/* ═══════════════════════════════════════
+   CARD
+═══════════════════════════════════════ */
+.card {
+  background: var(--blanco);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(194,24,91,.2);
+}
 
-  .cat-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(13,13,13,0.72);
-    color: #fff;
-    font-size: 0.7rem;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    padding: 4px 11px;
-    border-radius: 50px;
-    backdrop-filter: blur(6px);
-  }
+/* imagen con cursor zoom */
+.card-img-wrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #F3EEF0;
+  cursor: zoom-in;
+}
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform .5s var(--ease);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.card:hover .card-img-wrap img { transform: scale(1.04); }
 
-  .card-body { padding: 20px 22px 22px; }
-  .card-nombre {
-    font-family: Georgia, serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--negro);
-    margin-bottom: 5px;
-    line-height: 1.3;
-  }
-  .card-desc {
-    font-size: 0.8rem;
-    color: var(--plata);
-    line-height: 1.55;
-    margin-bottom: 14px;
-  }
+/* ícono zoom que aparece al hover */
+.zoom-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px; height: 32px;
+  background: rgba(10,10,10,.55);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+  pointer-events: none;
+}
+.zoom-hint svg { width: 14px; height: 14px; fill: #fff; }
+.card:hover .zoom-hint { opacity: 1; }
 
-  /* precio inline */
-  .precios {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-bottom: 16px;
-  }
-  .precio-pill {
-    background: var(--rosa);
-    color: #fff;
-    padding: 5px 14px;
-    border-radius: 50px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  .precio-pill.alt {
-    background: var(--negro);
-  }
-  .precio-pill.consulta {
-    background: transparent;
-    border: 2px solid var(--rosa);
-    color: var(--rosa);
-  }
+.cat-pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(10,10,10,.6);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-weight: 600;
+}
 
-  .card-btn {
-    display: block;
-    width: 100%;
-    background: var(--negro);
-    color: #fff;
-    text-align: center;
-    padding: 11px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 0.84rem;
-    font-weight: 700;
-    letter-spacing: .4px;
-    transition: background .18s;
-  }
-  .card-btn:hover { background: var(--rosa); }
+/* body */
+.card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.card-nombre {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--negro);
+  line-height: 1.3;
+}
+.card-desc {
+  font-size: 0.77rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.precios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+.tag-precio {
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: .1px;
+  white-space: nowrap;
+}
+.tag-precio.main  { background: var(--rosa);  color: #fff; }
+.tag-precio.dark  { background: var(--negro); color: #fff; }
+.tag-precio.ghost { background: transparent; border: 1.5px solid var(--rosa); color: var(--rosa); }
 
-  /* ── BANNER FINANCIAMIENTO ── */
-  .banner-fin {
-    background: linear-gradient(135deg, var(--rosa), var(--rosa-dark) 100%);
-    padding: 56px 24px;
-    text-align: center;
-    margin: 40px 0 0;
-  }
-  .banner-fin h3 {
-    font-family: Georgia, serif;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    color: #fff;
-    margin-bottom: 10px;
-  }
-  .banner-fin p { color: rgba(255,255,255,0.82); font-size: 1rem; margin-bottom: 30px; }
-  .fin-cards {
-    display: flex;
-    gap: 18px;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 640px;
-    margin: 0 auto 28px;
-  }
-  .fin-card {
-    flex: 1;
-    min-width: 190px;
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.28);
-    border-radius: 16px;
-    padding: 22px 28px;
-    color: #fff;
-    backdrop-filter: blur(8px);
-  }
-  .fin-card .num { font-size: 2rem; font-weight: 800; font-family: Georgia, serif; }
-  .fin-card .sub { font-size: 0.8rem; opacity: .8; margin-top: 4px; }
-  .banner-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    color: var(--rosa);
-    padding: 13px 34px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 0.95rem;
-    transition: transform .18s;
-  }
-  .banner-cta:hover { transform: scale(1.04); }
+.card-cta {
+  display: block;
+  width: 100%;
+  background: var(--negro);
+  color: var(--blanco);
+  text-align: center;
+  padding: 11px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  transition: background .18s var(--ease), transform .12s var(--ease);
+  margin-top: auto;
+}
+.card-cta:hover { background: var(--rosa); transform: scale(1.015); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--negro);
-    color: rgba(255,255,255,0.55);
-    padding: 44px 24px 36px;
-    text-align: center;
-  }
-  footer h4 {
-    font-family: Georgia, serif;
-    font-size: 1.3rem;
-    color: #fff;
-    margin-bottom: 6px;
-    letter-spacing: 2px;
-  }
-  footer .datos { margin: 16px 0; line-height: 2.1; font-size: 0.9rem; }
-  footer .datos a { color: var(--rosa); text-decoration: none; font-weight: 600; }
-  footer .credit { font-size: 0.7rem; margin-top: 22px; opacity: .35; }
+/* ═══════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════ */
+#lb {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.92);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+  animation: lb-in .22s var(--ease);
+}
+#lb.open { display: flex; }
+@keyframes lb-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+#lb-img-wrap {
+  position: relative;
+  max-width: min(90vw, 560px);
+  max-height: 90vh;
+  cursor: default;
+  animation: lb-scale .25s var(--ease);
+}
+@keyframes lb-scale {
+  from { transform: scale(.93); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+#lb-img {
+  display: block;
+  width: 100%;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.6);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#lb-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px; height: 36px;
+  background: var(--blanco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+  transition: transform .15s;
+}
+#lb-close:hover { transform: scale(1.12) rotate(90deg); }
+#lb-close svg { width: 14px; height: 14px; }
+#lb-caption {
+  position: absolute;
+  bottom: -44px;
+  left: 0; right: 0;
+  text-align: center;
+  color: rgba(255,255,255,.55);
+  font-size: 0.78rem;
+  letter-spacing: .3px;
+}
 
-  /* ── WHATSAPP FLOTANTE ── */
-  .wa-fab {
-    position: fixed;
-    bottom: 22px;
-    right: 22px;
-    z-index: 999;
-    width: 58px;
-    height: 58px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 4px 22px rgba(37,211,102,0.45);
-    animation: wa-pulse 2.2s infinite;
-    font-size: 26px;
-  }
-  .wa-fab:hover { transform: scale(1.1); }
-  @keyframes wa-pulse {
-    0%,100% { box-shadow: 0 4px 22px rgba(37,211,102,0.45); }
-    50%      { box-shadow: 0 4px 34px rgba(37,211,102,0.75); }
-  }
+/* ═══════════════════════════════════════
+   BANNER FINANCIAMIENTO
+═══════════════════════════════════════ */
+.fin-section {
+  background: var(--negro);
+  padding: 80px 24px;
+  text-align: center;
+}
+.fin-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 16px;
+}
+.fin-section h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--blanco);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.fin-section p {
+  color: rgba(255,255,255,.45);
+  font-size: 0.9rem;
+  margin-bottom: 44px;
+  line-height: 1.6;
+}
+.fin-grid {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 560px;
+  margin: 0 auto 36px;
+}
+.fin-card {
+  flex: 1;
+  min-width: 180px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  text-align: center;
+  transition: border-color .2s;
+}
+.fin-card:hover { border-color: rgba(194,24,91,.5); }
+.fin-card .big {
+  font-family: Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--blanco);
+  font-weight: 700;
+}
+.fin-card .small {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,.4);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.fin-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rosa);
+  color: var(--blanco);
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: .3px;
+  transition: background .2s var(--ease), transform .15s var(--ease);
+}
+.fin-cta:hover { background: var(--rosa-d); transform: scale(1.04); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 560px) {
-    .logo h1 { font-size: 1.15rem; }
-    .filtros-wrap { top: 52px; }
-    .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-    .card-body { padding: 14px 14px 16px; }
-    .card-nombre { font-size: 0.95rem; }
-  }
-  @media (max-width: 380px) {
-    .grid { grid-template-columns: 1fr; }
-  }
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: var(--gris-1);
+  border-top: 1px solid rgba(255,255,255,.05);
+  padding: 52px 24px 40px;
+  text-align: center;
+  color: rgba(255,255,255,.35);
+}
+.footer-logo {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--blanco);
+  margin-bottom: 20px;
+}
+.footer-divider {
+  width: 32px;
+  height: 2px;
+  background: var(--rosa);
+  margin: 0 auto 20px;
+  border-radius: 2px;
+}
+.footer-datos {
+  font-size: 0.82rem;
+  line-height: 2;
+}
+.footer-datos a { color: var(--rosa); text-decoration: none; }
+.footer-credit {
+  margin-top: 32px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  opacity: .3;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════
+   FAB WHATSAPP
+═══════════════════════════════════════ */
+.wa-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 500;
+  width: 54px; height: 54px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4);
+  transition: transform .2s var(--ease), box-shadow .2s;
+}
+.wa-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,.55);
+}
+.wa-fab svg { width: 26px; height: 26px; fill: #fff; }
+@keyframes wa-p {
+  0%,100% { box-shadow: 0 4px 16px rgba(37,211,102,.4); }
+  50%      { box-shadow: 0 4px 28px rgba(37,211,102,.7); }
+}
+.wa-fab { animation: wa-p 2.5s infinite; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE FIRST
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero { padding: 72px 20px 60px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .card-body { padding: 14px 14px 16px; gap: 8px; }
+  .card-nombre { font-size: 0.92rem; }
+  .card-cta { padding: 10px; font-size: 0.75rem; }
+}
+@media (max-width: 480px) {
+  .nav-inner { padding: 0 16px; height: 54px; }
+  .nav-logo span:first-child { font-size: 1rem; letter-spacing: 2px; }
+  .filtros-bar { top: 54px; }
+  .filtros-inner { padding: 10px 12px; gap: 6px; }
+  .f-btn { padding: 5px 12px; font-size: 0.73rem; }
+  .grid-section { padding: 32px 12px 48px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card-img-wrap { aspect-ratio: 3/4; }
+  .card-body { padding: 11px 12px 13px; gap: 7px; }
+  .card-nombre { font-size: 0.85rem; }
+  .card-desc { font-size: 0.71rem; }
+  .tag-precio { font-size: 0.68rem; padding: 3px 9px; }
+  .card-cta { font-size: 0.72rem; padding: 9px; border-radius: 8px; }
+  #lb-img-wrap { max-width: 95vw; }
+}
+@media (max-width: 360px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* desktop: 3 cols a partir de 900px */
+@media (min-width: 900px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1100px) {
+  .grid { grid-template-columns: repeat(4, 1fr); }
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="header-inner">
-    <div class="logo">
-      <h1>Muebles Ambriz</h1>
-      <p>Tepic, Nayarit &nbsp;·&nbsp; Desde 2018</p>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span>Muebles Ambriz</span>
+      <span>Tepic, Nayarit · Est. 2018</span>
     </div>
-    <a class="header-wa" href="https://wa.me/523111576442" target="_blank">
-      💬 WhatsApp
+    <a class="nav-wa" href="https://wa.me/523111576442" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.11 1.528 5.83L.064 23.441a.75.75 0 00.914.914l5.629-1.469A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.694 9.694 0 01-4.978-1.375l-.356-.213-3.69.963.983-3.588-.234-.37A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      WhatsApp
     </a>
   </div>
-</header>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h2>Tu hogar,<br><em>tu estilo.</em></h2>
-    <p>Catálogo 2026 — Recámaras, salas, comedores y más.<br>Con financiamiento propio, sin banco y sin trámites.</p>
-    <div class="hero-chips">
-      <span class="chip">✅ Sin banco</span>
-      <span class="chip">✅ Entrega inmediata</span>
-      <span class="chip">✅ 1 año de garantía</span>
-      <span class="chip">✅ Envío a domicilio</span>
-    </div>
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">Catálogo 2026</div>
+  <h1>Tu hogar,<br><em>tu estilo.</em></h1>
+  <p class="hero-sub">Recámaras, salas, comedores y más — con financiamiento propio. Sin banco, sin trámites, sin estrés.</p>
+  <div class="hero-chips">
+    <span class="chip">Sin banco</span>
+    <span class="chip">Entrega inmediata</span>
+    <span class="chip">1 año de garantía</span>
+    <span class="chip">Envío a domicilio</span>
   </div>
 </section>
 
 <!-- FILTROS -->
-<div class="filtros-wrap">
-  <div class="filtros">
-    <button class="f-btn on"      onclick="filtrar('todos',this)">Todos</button>
-    <button class="f-btn"         onclick="filtrar('recamara',this)">🛏️ Recámaras</button>
-    <button class="f-btn"         onclick="filtrar('tocador',this)">💄 Tocadores & Espejos</button>
-    <button class="f-btn"         onclick="filtrar('sala',this)">🛋️ Salas & Comedores</button>
+<div class="filtros-bar">
+  <div class="filtros-inner">
+    <button class="f-btn on"  onclick="filtrar('todos',this)">Todos</button>
+    <button class="f-btn"     onclick="filtrar('recamara',this)">Recámaras</button>
+    <button class="f-btn"     onclick="filtrar('tocador',this)">Tocadores & Espejos</button>
+    <button class="f-btn"     onclick="filtrar('sala',this)">Salas & Comedores</button>
   </div>
 </div>
 
 <!-- GRID -->
-<div class="grid-section">
+<section class="grid-section">
+  <p class="section-label">Colección disponible</p>
   <div class="grid" id="grid">
 
-    <!-- 1 — Recámara Completa Chocolate -->
-    <div class="card" data-cat="recamara">
-      <div class="card-img">
+    <!-- 1 -->
+    <article class="card" data-cat="recamara">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_01 (1).png" alt="Recámara Completa Chocolate" loading="lazy">
-        <span class="cat-tag">🛏️ Recámara</span>
+        <span class="cat-pill">Recámara</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Recámara Completa Chocolate</div>
         <div class="card-desc">Cabecera tapizada · tocador · ropero con espejo iluminado · baúl</div>
         <div class="precios">
-          <span class="precio-pill">20 semanas $1,100</span>
-          <span class="precio-pill alt">10 quincenas $2,200</span>
+          <span class="tag-precio main">20 sem · $1,100</span>
+          <span class="tag-precio dark">10 qnas · $2,200</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Vi%20la%20Recámara%20Completa%20Chocolate%20en%20su%20catálogo%20y%20me%20interesa%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Vi%20la%20Recámara%20Completa%20Chocolate%20en%20su%20catálogo%20y%20me%20interesa%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 2 — Cabecera Tapizada LED Dorado -->
-    <div class="card" data-cat="recamara">
-      <div class="card-img">
+    <!-- 2 -->
+    <article class="card" data-cat="recamara">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_01 (2).png" alt="Cabecera Tapizada LED Dorado" loading="lazy">
-        <span class="cat-tag">🛏️ Recámara</span>
+        <span class="cat-pill">Recámara</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Cabecera Tapizada LED Dorado</div>
         <div class="card-desc">Cabecera king · listones dorados · LED perimetral</div>
         <div class="precios">
-          <span class="precio-pill">20 semanas $800</span>
-          <span class="precio-pill alt">10 quincenas $1,600</span>
+          <span class="tag-precio main">20 sem · $800</span>
+          <span class="tag-precio dark">10 qnas · $1,600</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Cabecera%20Tapizada%20LED%20Dorado%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Cabecera%20Tapizada%20LED%20Dorado%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 3 — Recámara Confort Gris Plata -->
-    <div class="card" data-cat="recamara">
-      <div class="card-img">
+    <!-- 3 -->
+    <article class="card" data-cat="recamara">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_01 (3).png" alt="Recámara Confort Gris Plata" loading="lazy">
-        <span class="cat-tag">🛏️ Recámara</span>
+        <span class="cat-pill">Recámara</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Recámara Confort Gris Plata</div>
         <div class="card-desc">Cabecera · tocador grande · ropero torre · gris perla</div>
         <div class="precios">
-          <span class="precio-pill">20 semanas $1,100</span>
-          <span class="precio-pill alt">10 quincenas $2,200</span>
+          <span class="tag-precio main">20 sem · $1,100</span>
+          <span class="tag-precio dark">10 qnas · $2,200</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Recámara%20Confort%20Gris%20Plata%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Recámara%20Confort%20Gris%20Plata%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 4 — Recámara Black Edition -->
-    <div class="card" data-cat="recamara">
-      <div class="card-img">
+    <!-- 4 -->
+    <article class="card" data-cat="recamara">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_02 (4).png" alt="Recámara Black Edition" loading="lazy">
-        <span class="cat-tag">🛏️ Recámara</span>
+        <span class="cat-pill">Recámara</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Recámara Black Edition</div>
         <div class="card-desc">Cabecera · baúl · tocador · base · negro carbón. Disponible en tienda.</div>
         <div class="precios">
-          <span class="precio-pill consulta">Consultar precio</span>
+          <span class="tag-precio ghost">Consultar precio</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Recámara%20Black%20Edition%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Recámara%20Black%20Edition%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 5 — Tocador Hollywood Blanco -->
-    <div class="card" data-cat="tocador">
-      <div class="card-img">
+    <!-- 5 -->
+    <article class="card" data-cat="tocador">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_02 (5).png" alt="Tocador Hollywood Blanco" loading="lazy">
-        <span class="cat-tag">💄 Tocador</span>
+        <span class="cat-pill">Tocador</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Tocador Hollywood Blanco</div>
         <div class="card-desc">Espejo iluminado · cajones · banqueta rosa incluida</div>
         <div class="precios">
-          <span class="precio-pill">$5,800</span>
+          <span class="tag-precio main">$5,800</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Tocador%20Hollywood%20Blanco%20en%20%245%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Tocador%20Hollywood%20Blanco%20en%20$5%2C800%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 6 — Espejo de Focos de Piso -->
-    <div class="card" data-cat="tocador">
-      <div class="card-img">
+    <!-- 6 -->
+    <article class="card" data-cat="tocador">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_02 (6).png" alt="Espejo de Focos de Piso" loading="lazy">
-        <span class="cat-tag">💄 Espejo</span>
+        <span class="cat-pill">Espejo</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Espejo de Focos de Piso</div>
-        <div class="card-desc">Cuerpo completo · LED integrado · disponible en rosa palo y gris</div>
+        <div class="card-desc">Cuerpo completo · LED integrado · rosa palo y gris</div>
         <div class="precios">
-          <span class="precio-pill">$2,800</span>
+          <span class="tag-precio main">$2,800</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Espejo%20de%20Focos%20de%20Piso%20en%20%242%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Espejo%20de%20Focos%20de%20Piso%20en%20$2%2C800%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 7 — Base King Size + Baúl -->
-    <div class="card" data-cat="recamara">
-      <div class="card-img">
+    <!-- 7 -->
+    <article class="card" data-cat="recamara">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_03 (7).png" alt="Base King Size + Baúl" loading="lazy">
-        <span class="cat-tag">🛏️ Recámara</span>
+        <span class="cat-pill">Recámara</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Base King Size + Baúl</div>
-        <div class="card-desc">Base tapizada beige · baúl capitoné gris. ¡Combínalos a tu estilo!</div>
+        <div class="card-desc">Base tapizada beige · baúl capitoné gris</div>
         <div class="precios">
-          <span class="precio-pill">Base king $6,500 🔥</span>
-          <span class="precio-pill alt">Baúl $3,000 🔥</span>
+          <span class="tag-precio main">Base $6,500 🔥</span>
+          <span class="tag-precio dark">Baúl $3,000 🔥</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Base%20King%20Size%20y%20el%20Baúl%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Base%20King%20Size%20y%20el%20Baúl%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 8 — Espejo de Niña con Torres -->
-    <div class="card" data-cat="tocador">
-      <div class="card-img">
+    <!-- 8 -->
+    <article class="card" data-cat="tocador">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_03 (8).png" alt="Espejo de Niña con Torres" loading="lazy">
-        <span class="cat-tag">💄 Espejo</span>
+        <span class="cat-pill">Espejo</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Espejo de Niña con Torres</div>
         <div class="card-desc">Espejo iluminado · 2 torres de repisas · banqueta incluida</div>
         <div class="precios">
-          <span class="precio-pill">$3,800</span>
+          <span class="tag-precio main">$3,800</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Espejo%20de%20Niña%20con%20Torres%20en%20%243%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Espejo%20de%20Niña%20con%20Torres%20en%20$3%2C800%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 9 — Colección Sala Capitonada -->
-    <div class="card" data-cat="sala">
-      <div class="card-img">
+    <!-- 9 -->
+    <article class="card" data-cat="sala">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_03 (9).png" alt="Colección Sala Capitonada" loading="lazy">
-        <span class="cat-tag">🛋️ Sala</span>
+        <span class="cat-pill">Sala</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Colección Sala Capitonada</div>
         <div class="card-desc">Sala 2-2 marfil · mesa dorada · mesas nogal</div>
         <div class="precios">
-          <span class="precio-pill">Sala 2-2 $8,500</span>
-          <span class="precio-pill alt">Mesa dorada $3,600</span>
-          <span class="precio-pill">Mesas nogal $2,300 par</span>
+          <span class="tag-precio main">Sala $8,500</span>
+          <span class="tag-precio dark">Mesa $3,600</span>
+          <span class="tag-precio main">Nogal $2,300 par</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Colección%20Sala%20Capitonada%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20la%20Colección%20Sala%20Capitonada%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- 10 — Comedor Brenda -->
-    <div class="card" data-cat="sala">
-      <div class="card-img">
+    <!-- 10 -->
+    <article class="card" data-cat="sala">
+      <div class="card-img-wrap" onclick="openLb(this)">
         <img src="ChatGPT Image 13 jun 2026, 19_35_04 (10).png" alt="Comedor Brenda" loading="lazy">
-        <span class="cat-tag">🍽️ Comedor</span>
+        <span class="cat-pill">Comedor</span>
+        <div class="zoom-hint"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7H9v2H7v1h2v2h1v-2h2V9h-2z"/></svg></div>
       </div>
       <div class="card-body">
         <div class="card-nombre">Comedor Brenda</div>
-        <div class="card-desc">Mesa negra + 4 sillas capitonadas en tela crema. Ideal para elevar tu comedor.</div>
+        <div class="card-desc">Mesa negra · 4 sillas capitonadas en tela crema</div>
         <div class="precios">
-          <span class="precio-pill">$10,800</span>
+          <span class="tag-precio main">$10,800</span>
         </div>
-        <a class="card-btn" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Comedor%20Brenda%20en%20%2410%2C800%20%F0%9F%98%8A" target="_blank">Quiero más info →</a>
+        <a class="card-cta" href="https://wa.me/523111576442?text=Hola!%20Me%20interesa%20el%20Comedor%20Brenda%20en%20$10%2C800%20😊" target="_blank">Quiero más info →</a>
       </div>
-    </div>
+    </article>
 
-  </div><!-- /grid -->
-</div>
+  </div>
+</section>
 
-<!-- BANNER FINANCIAMIENTO -->
-<section class="banner-fin">
-  <h3>Sin banco. Sin trámites. Sin estrés.</h3>
-  <p>Tu mueble nuevo hoy mismo, con nuestro propio financiamiento.</p>
-  <div class="fin-cards">
+<!-- FINANCIAMIENTO -->
+<section class="fin-section">
+  <div class="fin-eyebrow">Financiamiento propio</div>
+  <h2>Sin banco.<br>Sin trámites.</h2>
+  <p>Tu mueble nuevo hoy mismo.<br>Elige el plan que más te convenga.</p>
+  <div class="fin-grid">
     <div class="fin-card">
-      <div class="num">20 sem</div>
-      <div class="sub">Pagos semanales<br>Desde $800/sem</div>
+      <div class="big">20</div>
+      <div class="small">semanas<br>Desde $800 / sem</div>
     </div>
     <div class="fin-card">
-      <div class="num">10 qnas</div>
-      <div class="sub">Pago quincenal<br>Desde $1,600/qna</div>
+      <div class="big">10</div>
+      <div class="small">quincenas<br>Desde $1,600 / qna</div>
     </div>
   </div>
-  <a class="banner-cta" href="https://wa.me/523111576442?text=Hola!%20Quiero%20conocer%20las%20opciones%20de%20financiamiento%20%F0%9F%98%8A" target="_blank">
-    💬 Pregunta por tu plan
+  <a class="fin-cta" href="https://wa.me/523111576442?text=Hola!%20Quiero%20conocer%20las%20opciones%20de%20financiamiento%20😊" target="_blank">
+    Pregunta por tu plan →
   </a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <h4>MUEBLES AMBRIZ</h4>
-  <div class="datos">
-    📍 Iturbide 138, Col. Moctezuma, Tepic, Nayarit<br>
-    🕙 Lunes a Sábado &nbsp;·&nbsp; 10:00 am – 8:00 pm<br>
-    📲 <a href="https://wa.me/523111576442">311 157 6442</a>
+  <div class="footer-logo">Muebles Ambriz</div>
+  <div class="footer-divider"></div>
+  <div class="footer-datos">
+    Iturbide 138, Col. Moctezuma, Tepic, Nayarit<br>
+    Lun – Sáb &nbsp;·&nbsp; 10:00 am – 8:00 pm<br>
+    <a href="https://wa.me/523111576442">311 157 6442</a>
   </div>
-  <div class="credit">Catálogo digital desarrollado por Delta Kilo Soluciones · 2026</div>
+  <div class="footer-credit">Catálogo digital · Delta Kilo Soluciones · 2026</div>
 </footer>
 
-<!-- WHATSAPP FLOTANTE -->
-<a class="wa-fab" href="https://wa.me/523111576442?text=Hola!%20Vi%20su%20catálogo%20en%20línea%20y%20me%20gustaría%20más%20información%20%F0%9F%98%8A" target="_blank" title="Escríbenos por WhatsApp">💬</a>
+<!-- FAB WHATSAPP -->
+<a class="wa-fab" href="https://wa.me/523111576442?text=Hola!%20Vi%20su%20catálogo%20en%20línea%20y%20me%20gustaría%20más%20información%20😊" target="_blank" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.11 1.528 5.83L.064 23.441a.75.75 0 00.914.914l5.629-1.469A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.694 9.694 0 01-4.978-1.375l-.356-.213-3.69.963.983-3.588-.234-.37A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+</a>
+
+<!-- LIGHTBOX -->
+<div id="lb" onclick="closeLb(event)">
+  <div id="lb-img-wrap">
+    <img id="lb-img" src="" alt="">
+    <div id="lb-close" onclick="closeLb(null,true)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+    <div id="lb-caption"></div>
+  </div>
+</div>
 
 <script>
-  function filtrar(cat, btn) {
-    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    document.querySelectorAll('#grid .card').forEach(c => {
-      c.style.display = (cat === 'todos' || c.dataset.cat === cat) ? '' : 'none';
-    });
+/* ── FILTRO ── */
+function filtrar(cat, btn) {
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#grid .card').forEach(c => {
+    const show = cat === 'todos' || c.dataset.cat === cat;
+    c.style.display = show ? '' : 'none';
+  });
+}
+
+/* ── LIGHTBOX ── */
+const lb      = document.getElementById('lb');
+const lbImg   = document.getElementById('lb-img');
+const lbCap   = document.getElementById('lb-caption');
+const lbWrap  = document.getElementById('lb-img-wrap');
+
+function openLb(wrap) {
+  const img = wrap.querySelector('img');
+  lbImg.src = img.src;
+  lbImg.alt = img.alt;
+  lbCap.textContent = img.alt;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLb(e, force) {
+  if (force || (e && e.target === lb)) {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbImg.src = ''; }, 250);
   }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLb(null, true);
+});
 </script>
 
 </body>
